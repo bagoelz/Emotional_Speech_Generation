@@ -1,0 +1,35 @@
+# Emotional Speech Generation - Dual Engine TTS System
+# Requirements for Part B of AI Challenge + Web Interface
+
+
+# Essential Dependencies (Fallback Engine)
+pyttsx3>=2.90
+comtypes>=1.1.14  # Windows COM support for pyttsx3
+pywin32>=306      # Windows API bindings
+
+# Optional Dependencies (Primary Engine - High Quality)
+# Uncomment these lines for best quality synthesis:
+# torch>=2.0.0
+# torchaudio>=2.0.0
+# TTS>=0.22.0
+
+# Core Python Libraries (usually included)
+argparse  # Command line argument parsing
+pathlib   # Modern path handling
+logging   # Structured logging
+os        # Operating system interface
+sys       # System-specific parameters
+warnings  # Warning control
+
+# Installation Instructions:
+# 
+# Minimal setup (fallback engine only):
+#   pip install pyttsx3 comtypes pywin32
+#
+# Full setup (both engines):
+#   pip install pyttsx3 comtypes pywin32 torch torchaudio TTS
+#
+# Virtual environment (recommended):
+#   python -m venv .venv
+#   .venv\Scripts\activate
+#   pip install -r requirements.txt

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Speech Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-microphone-alt"></i> Emotional Speech Generator</h1>
+            <p>Transform your text into expressive speech with AI-powered emotional control</p>
+        </header>
+
+        <div class="main-content">
+            <!-- System Status -->
+            <div class="status-panel" id="statusPanel">
+                <div class="status-item">
+                    <span class="status-label">System Status:</span>
+                    <span class="status-value" id="systemStatus">Checking...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Available Engines:</span>
+                    <span class="status-value" id="availableEngines">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Input Form -->
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="textInput">
+                        <i class="fas fa-edit"></i> Text to Synthesize
+                    </label>
+                    <textarea 
+                        id="textInput" 
+                        placeholder="Enter the text you want to convert to speech..."
+                        maxlength="5000"
+                    >Hello! This is an example of emotional speech synthesis. Try changing the style and intensity to hear different emotions.</textarea>
+                    <div class="char-counter">
+                        <span id="charCount">0</span>/5000 characters
+                    </div>
+                </div>
+
+                <div class="controls-grid">
+                    <div class="form-group">
+                        <label for="styleSelect">
+                            <i class="fas fa-palette"></i> Emotional Style
+                        </label>
+                        <select id="styleSelect">
+                            <option value="neutral">Neutral - Natural, balanced</option>
+                            <option value="enthusiastic">Enthusiastic - Energetic, excited</option>
+                            <option value="somber">Somber - Serious, subdued</option>
+                            <option value="confident">Confident - Assertive, sure</option>
+                            <option value="authoritative">Authoritative - Commanding, formal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="intensitySlider">
+                            <i class="fas fa-sliders-h"></i> Intensity: <span id="intensityValue">50</span>%
+                        </label>
+                        <input type="range" id="intensitySlider" min="0" max="100" value="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="engineSelect">
+                            <i class="fas fa-cog"></i> Engine
+                        </label>
+                        <select id="engineSelect">
+                            <option value="auto">Auto (Best Available)</option>
+                            <option value="coqui">Coqui TTS (Primary)</option>
+                            <option value="pyttsx3">pyttsx3 (Fallback)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genderFilter">
+                            <i class="fas fa-venus-mars"></i> Voice Gender
+                        </label>
+                        <select id="genderFilter">
+                            <option value="all">All Voices</option>
+                            <option value="female">Female Voices</option>
+                            <option value="male">Male Voices</option>
+                            <option value="neutral">Neutral Voices</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="voiceSelect">
+                            <i class="fas fa-user"></i> Voice Selection
+                        </label>
+                        <div class="voice-selection-container">
+                            <select id="voiceSelect">
+                                <option value="">Default Voice</option>
+                            </select>
+                            <button type="button" id="previewVoiceBtn" class="preview-btn" title="Preview Voice">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="voice-info" id="voiceInfo" style="display: none;">
+                            <small class="voice-details"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="speedSlider">
+                            <i class="fas fa-tachometer-alt"></i> Speed: <span id="speedValue">1.0</span>x
+                        </label>
+                        <input type="range" id="speedSlider" min="0.5" max="2.0" step="0.1" value="1.0">
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="synthesizeBtn" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Generate Speech
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h3><i class="fas fa-volume-up"></i> Generated Audio</h3>
+                
+                <div class="audio-player">
+                    <audio id="audioPlayer" controls style="width: 100%;">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <div class="result-info">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Processing Time:</span>
+                            <span class="info-value" id="processingTime">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Engine Used:</span>
+                            <span class="info-value" id="engineUsed">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Audio Duration:</span>
+                            <span class="info-value" id="audioDuration">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">File Size:</span>
+                            <span class="info-value" id="fileSize">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="download-section">
+                    <a id="downloadLink" class="btn btn-success" download>
+                        <i class="fas fa-download"></i> Download Audio
+                    </a>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <p>Generating speech...</p>
+                    <p class="loading-details" id="loadingDetails">Please wait while we process your text</p>
+                </div>
+            </div>
+
+            <!-- Error Display -->
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="errorText"></span>
+                <button class="error-close" onclick="hideError()">×</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by Coqui TTS & pyttsx3 | Built with FastAPI</p>
+            <div class="footer-links">
+                <a href="/docs" target="_blank"><i class="fas fa-book"></i> API Docs</a>
+                <a href="/redoc" target="_blank"><i class="fas fa-file-alt"></i> ReDoc</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+# FastAPI Emotional TTS Web Application
+# Requirements for the web interface and API
+
+# Web Framework & API
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6  # For file uploads and form data
+jinja2>=3.1.2            # Template engine (optional)
+
+# Essential Dependencies (Fallback Engine)
+pyttsx3>=2.90
+comtypes>=1.1.14  # Windows COM support for pyttsx3
+pywin32>=306      # Windows API bindings
+
+# Optional Dependencies (Primary Engine - High Quality)
+# Uncomment these lines for best quality synthesis:
+# torch>=2.0.0
+# torchaudio>=2.0.0
+# TTS>=0.22.0
+
+# Core Python Libraries (usually included)
+pathlib   # Modern path handling
+logging   # Structured logging
+uuid      # Unique identifier generation
+datetime  # Date and time handling
+asyncio   # Asynchronous programming
+
+# Installation Instructions:
+# 
+# Minimal setup (fallback engine only):
+#   pip install fastapi uvicorn[standard] python-multipart pyttsx3 comtypes pywin32
+#
+# Full setup (both engines):
+#   pip install fastapi uvicorn[standard] python-multipart pyttsx3 comtypes pywin32 torch torchaudio TTS
+#
+# Virtual environment (recommended):
+#   python -m venv .venv
+#   .venv\Scripts\activate
+#   pip install -r requirements.txt
+#
+# Running the application:
+#   uvicorn app:app --reload --host 0.0.0.0 --port 8000
+#   Then open: http://localhost:8000
