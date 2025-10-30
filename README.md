@@ -33,6 +33,8 @@ Pick the setup that matches your machine and goals.
 ## Web Application Example
 Want to try the TTS system through a web interface? Check out the `application/` folder for a complete example:
 
+![Web Application Interface](apps_image.png)
+
 - **API Backend**: FastAPI-based REST API (`app.py`) that wraps the TTS functionality
 - **Frontend**: Clean web interface with real-time audio playback
 - **Features**: Voice selection, style control, intensity adjustment, and audio download
