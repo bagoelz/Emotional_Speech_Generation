@@ -30,6 +30,21 @@ Pick the setup that matches your machine and goals.
 - Add mood and intensity:
   - `python solution.py "Hello from our narrator" out.wav --style enthusiastic --intensity 70`
 
+## Web Application Example
+Want to try the TTS system through a web interface? Check out the `application/` folder for a complete example:
+
+- **API Backend**: FastAPI-based REST API (`app.py`) that wraps the TTS functionality
+- **Frontend**: Clean web interface with real-time audio playback
+- **Features**: Voice selection, style control, intensity adjustment, and audio download
+
+To run the web application:
+1. `cd application`
+2. `pip install -r requirements.txt`
+3. `python app.py`
+4. Open `http://localhost:8000` in your browser
+
+See `application/README.md` for detailed setup instructions and API documentation.
+
 ## Pick Engine and Voice
 - Let the tool choose (Coqui first, pyttsx3 fallback), or force one:
   - `--engine coqui` or `--engine pyttsx3`
