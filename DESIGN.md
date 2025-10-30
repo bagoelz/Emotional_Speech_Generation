@@ -1,4 +1,4 @@
-# Emotional Speech Generation — System Design (Conversational Guide)
+# Emotional Speech Generation — System Design
 
 Let’s imagine we’re sitting together with a cup of coffee. You type a line, press a button, and a friendly narrator speaks back—in the mood you asked for. That’s the idea. We’ll keep things practical, easy to run, and ready to grow when you want more expression.
 
@@ -6,16 +6,6 @@ Let’s imagine we’re sitting together with a cup of coffee. You type a line, 
 - Turn your script into a clear, natural narration.
 - Choose a mood: neutral, enthusiastic, somber, confident, or authoritative—and how strong it should feel.
 - Use two engines so it “just works”: Coqui TTS for quality, pyttsx3 for reliability.
-
-## How We’d Use It Together
-1. You give me the text (plain or Markdown). We check it’s clean—no empty input.
-2. We split into natural sentences so long paragraphs become breathable chunks.
-3. We tidy details: numbers, dates, acronyms, special names—so pronunciation stays solid.
-4. We plan delivery: speaking rate, energy, pitch range, pauses, where to emphasize.
-5. We synthesize: Coqui TTS when available (expressive, neural). If not, pyttsx3 steps in without drama.
-6. We polish the audio: a good vocoder (e.g., HiFi‑GAN), gentle de‑essing, loudness normalization, smooth joins.
-7. We sanity‑check: quick ASR (Whisper) to catch obvious intelligibility issues.
-8. We export: a WAV file plus a tiny JSON with style and segment timings.
 
 Example (CLI):
 - `python solution.py "Hello from our narrator" out.wav`
